@@ -77,7 +77,7 @@ public class HelloServiceTest {
             latch.await();
 
             long time = System.currentTimeMillis() - start;
-            System.out.println("thead: " + threadNum);
+            System.out.println("thread: " + threadNum);
             System.out.println("loop: " + loopCount);
             System.out.println("time: " + time + "ms");
             System.out.println("tps: " + (double) loopCount / ((double) time / 1000));

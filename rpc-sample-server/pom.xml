@@ -9,7 +9,7 @@
     <parent>
         <groupId>com.adchina.rpc</groupId>
         <artifactId>rpc</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>rpc-sample-server</artifactId>
@@ -24,13 +24,13 @@
         <dependency>
             <groupId>com.adchina.rpc</groupId>
             <artifactId>rpc-sample-api</artifactId>
-            <version>1.0.0</version>
+            <version>${project.version}</version>
         </dependency>
         <!-- RPC Server -->
         <dependency>
             <groupId>com.adchina.rpc</groupId>
             <artifactId>rpc-server</artifactId>
-            <version>1.0.0</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
