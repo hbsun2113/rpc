@@ -9,7 +9,7 @@ public class RpcBootstrap {
     private static final Logger LOGGER = LoggerFactory.getLogger(RpcBootstrap.class);
 
     public static void main(String[] args) {
-        LOGGER.debug("start rpc server");
+        LOGGER.debug("start server");
         new ClassPathXmlApplicationContext("spring.xml");
     }
 }

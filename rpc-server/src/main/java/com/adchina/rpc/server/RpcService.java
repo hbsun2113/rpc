@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 import org.springframework.stereotype.Component;
 
 /**
- * RPC 请求注解（标注在服务实现类上）
+ * RPC 服务注解（标注在服务实现类上）
  *
  * @author huangyong
  * @since 1.0.0
@@ -17,7 +17,13 @@ import org.springframework.stereotype.Component;
 @Component
 public @interface RpcService {
 
-    Class<?> value() default Object.class;
+    /**
+     * 服务接口类
+     */
+    Class<?> value();
 
-    String name() default "";
+    /**
+     * 服务版本号
+     */
+    String version() default "";
 }

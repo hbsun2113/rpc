@@ -1,8 +1,8 @@
 # 分布式 RPC 框架 - 使用说明
 
-当前版本：1.1.0
+当前版本：1.1.1
 
-发布日期：2015-05-05
+发布日期：2015-05-06
 
 发布日志参见 `RELEASE.md` 文档
 
@@ -67,10 +67,8 @@ public class HelloServiceImpl implements HelloService {
 }
 ```
 
-- 可在 RpcService 注解中指定 RPC 接口，该接口对应的完全类名，即为 RPC 服务名。
-- 若 RpcService 注解不带任何属性，则 RPC 服务名为实现类的完全类名。
-- 可设置 RpcService 注解的 name 属性，强制指定一个 RPC 服务名。
-- 若同时指定 name 与 value 属性时，则 name 属性优先。
+- 必须在 RpcService 注解中指定 RPC 接口。
+- 若 RPC 接口拥有多个实现类，则需要在 RpcService 注解中指定 version 属性加以区分。
 
 ### 第三步：配置 RPC 服务端
 

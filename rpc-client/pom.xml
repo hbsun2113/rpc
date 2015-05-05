@@ -15,27 +15,17 @@
     <artifactId>rpc-client</artifactId>
 
     <dependencies>
-        <!-- SLF4J -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-        </dependency>
-        <!-- Netty -->
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-        </dependency>
         <!-- RPC Common -->
         <dependency>
             <groupId>com.adchina.rpc</groupId>
             <artifactId>rpc-common</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <!-- RPC Registry with ZooKeeper -->
         <dependency>
             <groupId>com.adchina.rpc</groupId>
             <artifactId>rpc-registry-zookeeper</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
