@@ -1,4 +1,4 @@
-package com.adchina.rpc.common;
+package com.adchina.rpc.common.util;
 
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;

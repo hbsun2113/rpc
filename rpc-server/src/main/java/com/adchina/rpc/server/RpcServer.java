@@ -1,9 +1,10 @@
 package com.adchina.rpc.server;
 
-import com.adchina.rpc.common.RpcDecoder;
-import com.adchina.rpc.common.RpcEncoder;
-import com.adchina.rpc.common.RpcRequest;
-import com.adchina.rpc.common.RpcResponse;
+import com.adchina.rpc.common.bean.RpcRequest;
+import com.adchina.rpc.common.bean.RpcResponse;
+import com.adchina.rpc.common.codec.RpcDecoder;
+import com.adchina.rpc.common.codec.RpcEncoder;
+import com.adchina.rpc.common.util.StringUtil;
 import com.adchina.rpc.registry.ServiceRegistry;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -40,7 +41,7 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
     private ServiceRegistry serviceRegistry;
 
     /**
-     * 存放 服务接口名 与 服务对象 之间的映射关系
+     * 存放 服务名 与 服务对象 之间的映射关系
      */
     private Map<String, Object> handlerMap = new HashMap<>();
 
@@ -59,8 +60,17 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
         Map<String, Object> serviceBeanMap = ctx.getBeansWithAnnotation(RpcService.class);
         if (MapUtils.isNotEmpty(serviceBeanMap)) {
             for (Object serviceBean : serviceBeanMap.values()) {
-                String interfaceName = serviceBean.getClass().getAnnotation(RpcService.class).value().getName();
-                handlerMap.put(interfaceName, serviceBean);
+                RpcService rpcService = serviceBean.getClass().getAnnotation(RpcService.class);
+                String serviceName = rpcService.name();
+                if (StringUtil.isEmpty(serviceName)) {
+                    Class<?> serviceClass = rpcService.value();
+                    if (serviceClass == null) {
+                        serviceName = serviceBean.getClass().getName();
+                    } else {
+                        serviceName = serviceClass.getName();
+                    }
+                }
+                handlerMap.put(serviceName, serviceBean);
             }
         }
     }

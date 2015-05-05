@@ -1,5 +1,6 @@
-package com.adchina.rpc.common;
+package com.adchina.rpc.common.codec;
 
+import com.adchina.rpc.common.util.SerializationUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;

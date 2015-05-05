@@ -8,7 +8,7 @@
 
     <groupId>com.adchina.rpc</groupId>
     <artifactId>rpc</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -17,13 +17,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- JUnit -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
             <!-- SLF4J -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -83,6 +76,12 @@
                 <artifactId>zkclient</artifactId>
                 <version>0.4</version>
             </dependency>
+            <!-- Apache Commons Lang -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.3.2</version>
+            </dependency>
             <!-- Apache Commons Collections -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -133,9 +132,6 @@
         <module>rpc-client</module>
         <module>rpc-registry</module>
         <module>rpc-registry-zookeeper</module>
-        <module>rpc-sample-api</module>
-        <module>rpc-sample-server</module>
-        <module>rpc-sample-client</module>
     </modules>
 
 </project>

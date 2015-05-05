@@ -9,17 +9,12 @@
     <parent>
         <groupId>com.adchina.rpc</groupId>
         <artifactId>rpc</artifactId>
-        <version>1.0.1</version>
+        <version>1.1.0</version>
     </parent>
 
     <artifactId>rpc-sample-client</artifactId>
 
     <dependencies>
-        <!-- JUnit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -45,6 +40,24 @@
 
     <build>
         <plugins>
+            <!-- Dependency -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.9</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -55,7 +68,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib</classpathPrefix>
-                            <mainClass>com.adchina.rpc.sample.client.HelloApp</mainClass>
+                            <mainClass>com.adchina.rpc.sample.client.HelloClient</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

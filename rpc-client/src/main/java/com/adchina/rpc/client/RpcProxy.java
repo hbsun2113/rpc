@@ -1,7 +1,7 @@
 package com.adchina.rpc.client;
 
-import com.adchina.rpc.common.RpcRequest;
-import com.adchina.rpc.common.RpcResponse;
+import com.adchina.rpc.common.bean.RpcRequest;
+import com.adchina.rpc.common.bean.RpcResponse;
 import com.adchina.rpc.registry.ServiceDiscovery;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -34,6 +34,12 @@ public class RpcProxy {
 
     @SuppressWarnings("unchecked")
     public <T> T create(final Class<?> interfaceClass) {
+        String serviceName = interfaceClass.getName();
+        return create(interfaceClass, serviceName);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T create(final Class<?> interfaceClass, final String serviceName) {
         // 创建动态代理对象
         return (T) Proxy.newProxyInstance(
             interfaceClass.getClassLoader(),
@@ -50,9 +56,8 @@ public class RpcProxy {
                     request.setParameters(args);
                     // 获取 RPC 服务地址
                     if (serviceDiscovery != null) {
-                        String interfaceName = interfaceClass.getName();
-                        serviceAddress = serviceDiscovery.discover(interfaceName);
-                        LOGGER.debug("discover service: {} => {}", interfaceName, serviceAddress);
+                        serviceAddress = serviceDiscovery.discover(serviceName);
+                        LOGGER.debug("discover service: {} => {}", serviceName, serviceAddress);
                     }
                     if (serviceAddress == null || serviceAddress.equals("")) {
                         throw new RuntimeException("server address is empty");

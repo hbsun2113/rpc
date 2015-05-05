@@ -1,7 +1,7 @@
 package com.adchina.rpc.server;
 
-import com.adchina.rpc.common.RpcRequest;
-import com.adchina.rpc.common.RpcResponse;
+import com.adchina.rpc.common.bean.RpcRequest;
+import com.adchina.rpc.common.bean.RpcResponse;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
