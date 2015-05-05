@@ -1,6 +1,10 @@
-# 分布式 RPC 框架
+# 分布式 RPC 框架 - 使用说明
 
-版本：1.0.0
+当前版本：1.1.1
+
+发布日期：2015-05-06
+
+发布日志参见 `RELEASE.md` 文档
 
 ## 定义 RPC 接口
 
@@ -30,14 +34,14 @@ public interface HelloService {
 <dependency>
     <groupId>com.adchina.rpc</groupId>
     <artifactId>rpc-sample-api</artifactId>
-    <version>1.0.0</version>
+    <version>${version.rpc}</version>
 </dependency>
 
 <!-- RPC Server -->
 <dependency>
     <groupId>com.adchina.rpc</groupId>
     <artifactId>rpc-server</artifactId>
-    <version>1.0.0</version>
+    <version>${version.rpc}</version>
 </dependency>
 ```
 
@@ -63,7 +67,8 @@ public class HelloServiceImpl implements HelloService {
 }
 ```
 
-需要在 RpcService 注解中指定该实现类所实现的 RPC 接口。
+- 必须在 RpcService 注解中指定 RPC 接口。
+- 若 RPC 接口拥有多个实现类，则需要在 RpcService 注解中指定 version 属性加以区分。
 
 ### 第三步：配置 RPC 服务端
 
@@ -138,14 +143,14 @@ public class RpcBootstrap {
 <dependency>
     <groupId>com.adchina.rpc</groupId>
     <artifactId>rpc-sample-api</artifactId>
-    <version>1.0.0</version>
+    <version>${version.rpc}</version>
 </dependency>
 
 <!-- RPC Client -->
 <dependency>
     <groupId>com.adchina.rpc</groupId>
     <artifactId>rpc-client</artifactId>
-    <version>1.0.0</version>
+    <version>${version.rpc}</version>
 </dependency>
 ```
 

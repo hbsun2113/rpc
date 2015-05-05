@@ -1,5 +1,6 @@
 package com.adchina.rpc.registry.zookeeper;
 
+import com.adchina.rpc.common.util.CollectionUtil;
 import com.adchina.rpc.registry.ServiceDiscovery;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -32,11 +33,11 @@ public class ZooKeeperServiceDiscovery implements ServiceDiscovery {
             // 获取 service 节点
             String servicePath = Constant.ZK_REGISTRY_PATH + "/" + name;
             if (!zkClient.exists(servicePath)) {
-                throw new RuntimeException("can not find any service node");
+                throw new RuntimeException(String.format("can not find any service node on path: %s", servicePath));
             }
             List<String> addressList = zkClient.getChildren(servicePath);
-            if (addressList == null || addressList.size() == 0) {
-                throw new RuntimeException("can not find any address node");
+            if (CollectionUtil.isEmpty(addressList)) {
+                throw new RuntimeException(String.format("can not find any address node on path: %s", servicePath));
             }
             // 获取 address 节点
             String address;
