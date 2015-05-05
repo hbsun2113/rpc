@@ -30,6 +30,12 @@
             <groupId>com.101tec</groupId>
             <artifactId>zkclient</artifactId>
         </dependency>
+        <!-- RPC Common -->
+        <dependency>
+            <groupId>com.adchina.rpc</groupId>
+            <artifactId>rpc-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- RPC Registry -->
         <dependency>
             <groupId>com.adchina.rpc</groupId>
