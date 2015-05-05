@@ -61,14 +61,10 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
         if (MapUtils.isNotEmpty(serviceBeanMap)) {
             for (Object serviceBean : serviceBeanMap.values()) {
                 RpcService rpcService = serviceBean.getClass().getAnnotation(RpcService.class);
-                String serviceName = rpcService.name();
-                if (StringUtil.isEmpty(serviceName)) {
-                    Class<?> serviceClass = rpcService.value();
-                    if (serviceClass == null) {
-                        serviceName = serviceBean.getClass().getName();
-                    } else {
-                        serviceName = serviceClass.getName();
-                    }
+                String serviceName = rpcService.value().getName();
+                String serviceVersion = rpcService.version();
+                if (StringUtil.isNotEmpty(serviceVersion)) {
+                    serviceName += "-" + serviceVersion;
                 }
                 handlerMap.put(serviceName, serviceBean);
             }
@@ -99,7 +95,6 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
             String serverIp = InetAddress.getLocalHost().getHostAddress();
             // 启动 RPC 服务器
             ChannelFuture future = bootstrap.bind(serverIp, serverPort).sync();
-            LOGGER.debug("server started on port {}", serverPort);
             // 注册 RPC 服务地址
             if (serviceRegistry != null) {
                 String serviceAddress = serverIp + ":" + serverPort;
@@ -108,6 +103,7 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
                     LOGGER.debug("register service: {} => {}", interfaceName, serviceAddress);
                 }
             }
+            LOGGER.debug("server started on port {}", serverPort);
             // 关闭 RPC 服务器
             future.channel().closeFuture().sync();
         } finally {

@@ -15,8 +15,8 @@ public class HelloClient {
         String result = helloService.hello("World");
         System.out.println(result);
 
-        HelloService helloService2 = rpcProxy.create(HelloService.class, "sample.hello");
-        String result2 = helloService2.hello("World");
+        HelloService helloService2 = rpcProxy.create(HelloService.class, "sample.hello2");
+        String result2 = helloService2.hello("世界");
         System.out.println(result2);
     }
 }

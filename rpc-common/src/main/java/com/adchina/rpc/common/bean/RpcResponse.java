@@ -9,11 +9,11 @@ package com.adchina.rpc.common.bean;
 public class RpcResponse {
 
     private String requestId;
-    private Throwable error;
+    private Exception exception;
     private Object result;
 
-    public boolean isError() {
-        return error != null;
+    public boolean hasException() {
+        return exception != null;
     }
 
     public String getRequestId() {
@@ -24,12 +24,12 @@ public class RpcResponse {
         this.requestId = requestId;
     }
 
-    public Throwable getError() {
-        return error;
+    public Throwable getException() {
+        return exception;
     }
 
-    public void setError(Throwable error) {
-        this.error = error;
+    public void setException(Exception exception) {
+        this.exception = exception;
     }
 
     public Object getResult() {

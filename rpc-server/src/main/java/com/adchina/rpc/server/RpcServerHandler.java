@@ -2,6 +2,7 @@ package com.adchina.rpc.server;
 
 import com.adchina.rpc.common.bean.RpcRequest;
 import com.adchina.rpc.common.bean.RpcResponse;
+import com.adchina.rpc.common.util.StringUtil;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -35,17 +36,25 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
         try {
             Object result = handle(request);
             response.setResult(result);
-        } catch (Throwable t) {
-            response.setError(t);
+        } catch (Exception e) {
+            LOGGER.error("handle result failure", e);
+            response.setException(e);
         }
         // 写入 RPC 响应对象并自动关闭连接
         ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
     }
 
-    private Object handle(RpcRequest request) throws Throwable {
+    private Object handle(RpcRequest request) throws Exception {
         // 获取服务对象
-        String className = request.getClassName();
-        Object serviceBean = handlerMap.get(className);
+        String serviceName = request.getInterfaceName();
+        String serviceVersion = request.getServiceVersion();
+        if (StringUtil.isNotEmpty(serviceVersion)) {
+            serviceName += "-" + serviceVersion;
+        }
+        Object serviceBean = handlerMap.get(serviceName);
+        if (serviceBean == null) {
+            throw new RuntimeException(String.format("can not find service bean by key: %s", serviceName));
+        }
         // 获取反射调用所需的参数
         Class<?> serviceClass = serviceBean.getClass();
         String methodName = request.getMethodName();
