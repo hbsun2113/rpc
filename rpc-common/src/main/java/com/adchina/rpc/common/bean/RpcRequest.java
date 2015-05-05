@@ -1,4 +1,4 @@
-package com.adchina.rpc.common;
+package com.adchina.rpc.common.bean;
 
 /**
  * 封装 RPC 请求

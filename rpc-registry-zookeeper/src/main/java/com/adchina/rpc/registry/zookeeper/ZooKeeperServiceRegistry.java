@@ -15,17 +15,16 @@ public class ZooKeeperServiceRegistry implements ServiceRegistry {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ZooKeeperServiceRegistry.class);
 
-    private String zkAddress;
+    private final ZkClient zkClient;
 
     public ZooKeeperServiceRegistry(String zkAddress) {
-        this.zkAddress = zkAddress;
+        // 创建 ZooKeeper 客户端
+        LOGGER.debug("connect zookeeper");
+        zkClient = new ZkClient(zkAddress, Constant.ZK_SESSION_TIMEOUT, Constant.ZK_CONNECTION_TIMEOUT);
     }
 
     @Override
     public void register(String serviceName, String serviceAddress) {
-        // 创建 ZooKeeper 客户端
-        ZkClient zkClient = new ZkClient(zkAddress, Constant.ZK_SESSION_TIMEOUT, Constant.ZK_CONNECTION_TIMEOUT);
-        LOGGER.debug("connect zookeeper");
         // 创建 root 节点（持久）
         String rootPath = Constant.ZK_REGISTRY_PATH;
         if (!zkClient.exists(rootPath)) {

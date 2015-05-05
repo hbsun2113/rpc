@@ -1,9 +1,9 @@
 package com.adchina.rpc.client;
 
-import com.adchina.rpc.common.RpcDecoder;
-import com.adchina.rpc.common.RpcEncoder;
-import com.adchina.rpc.common.RpcRequest;
-import com.adchina.rpc.common.RpcResponse;
+import com.adchina.rpc.common.bean.RpcRequest;
+import com.adchina.rpc.common.bean.RpcResponse;
+import com.adchina.rpc.common.codec.RpcDecoder;
+import com.adchina.rpc.common.codec.RpcEncoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
