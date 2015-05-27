@@ -11,7 +11,7 @@ import org.apache.commons.collections4.MapUtils;
  * @author huangyong
  * @since 1.0.0
  */
-public final class CollectionUtil {
+public class CollectionUtil {
 
     /**
      * 判断 Collection 是否为空

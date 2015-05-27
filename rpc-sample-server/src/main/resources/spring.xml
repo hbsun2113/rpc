@@ -16,7 +16,7 @@
     </bean>
 
     <bean id="rpcServer" class="com.adchina.rpc.server.RpcServer">
-        <constructor-arg name="serverPort" value="${server.port}"/>
+        <constructor-arg name="serviceAddress" value="${service.address}"/>
         <constructor-arg name="serviceRegistry" ref="serviceRegistry"/>
     </bean>
 

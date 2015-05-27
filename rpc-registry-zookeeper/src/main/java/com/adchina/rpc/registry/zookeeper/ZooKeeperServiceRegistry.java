@@ -19,8 +19,8 @@ public class ZooKeeperServiceRegistry implements ServiceRegistry {
 
     public ZooKeeperServiceRegistry(String zkAddress) {
         // 创建 ZooKeeper 客户端
-        LOGGER.debug("connect zookeeper");
         zkClient = new ZkClient(zkAddress, Constant.ZK_SESSION_TIMEOUT, Constant.ZK_CONNECTION_TIMEOUT);
+        LOGGER.debug("connect zookeeper");
     }
 
     @Override
