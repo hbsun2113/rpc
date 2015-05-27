@@ -95,7 +95,7 @@ public class HelloServiceImpl implements HelloService {
 
     <!-- RPC Server -->
     <bean id="rpcServer" class="com.adchina.rpc.server.RpcServer">
-        <constructor-arg name="serverPort" value="${server.port}"/>
+        <constructor-arg name="serviceAddress" value="${service.address}"/>
         <constructor-arg name="serviceRegistry" ref="serviceRegistry"/>
     </bean>
 
@@ -108,12 +108,12 @@ public class HelloServiceImpl implements HelloService {
 #### rpc.properties
 
 ```properties
-server.port=8000
+service.address=127.0.0.1:8000
 zk.address=127.0.0.1:2181
 ```
 
-- server.port：发布 RPC 服务的端口。
-- zk.address：ZooKeeper 服务器的端口。
+- service.address：发布 RPC 服务的地址。
+- zk.address：ZooKeeper 服务器的地址。
 
 ### 第四步：启动 RPC 服务
 
