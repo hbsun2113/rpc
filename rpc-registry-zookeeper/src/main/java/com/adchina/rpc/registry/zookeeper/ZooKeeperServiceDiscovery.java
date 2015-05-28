@@ -20,8 +20,14 @@ public class ZooKeeperServiceDiscovery implements ServiceDiscovery {
 
     private String zkAddress;
 
-    public ZooKeeperServiceDiscovery(String zkAddress) {
+    private String systemName;
+
+    private int instanceId;
+
+    public ZooKeeperServiceDiscovery(String zkAddress, String systemName, int instanceId) {
         this.zkAddress = zkAddress;
+        this.systemName = systemName;
+        this.instanceId = instanceId;
     }
 
     @Override
@@ -31,7 +37,7 @@ public class ZooKeeperServiceDiscovery implements ServiceDiscovery {
         LOGGER.debug("connect zookeeper");
         try {
             // 获取 service 节点
-            String servicePath = Constant.ZK_REGISTRY_PATH + "/" + name;
+            String servicePath = Constant.ZK_REGISTRY_PATH + "/" + systemName + "/" + instanceId + "/" + name;
             if (!zkClient.exists(servicePath)) {
                 throw new RuntimeException(String.format("can not find any service node on path: %s", servicePath));
             }
