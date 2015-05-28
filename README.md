@@ -1,8 +1,8 @@
 # 分布式 RPC 框架 - 使用说明
 
-当前版本：1.2.0
+当前版本：1.3.0
 
-发布日期：2015-05-27
+发布日期：2015-05-28
 
 发布日志参见 `RELEASE.md` 文档
 
@@ -19,7 +19,7 @@ public interface HelloService {
 }
 ```
 
-需要将 RPC 接口与 RPC 实现分别存放在不同的模块中。
+需要将 RPC 接口与 RPC 实现分别存放在不同的模块中
 
 ## 发布 RPC 服务
 
@@ -45,8 +45,8 @@ public interface HelloService {
 </dependency>
 ```
 
-- RPC Sample API：RPC 接口所在模块的依赖。
-- RPC Server：RPC 服务端框架的依赖。
+- RPC Sample API：RPC 接口所在模块的依赖
+- RPC Server：RPC 服务端框架的依赖
 
 
 ### 第二步：实现 RPC 接口
@@ -67,8 +67,8 @@ public class HelloServiceImpl implements HelloService {
 }
 ```
 
-- 必须在 RpcService 注解中指定 RPC 接口。
-- 若 RPC 接口拥有多个实现类，则需要在 RpcService 注解中指定 version 属性加以区分。
+- 必须在 RpcService 注解中指定 RPC 接口
+- 若 RPC 接口拥有多个实现类，则需要在 RpcService 注解中指定 version 属性加以区分
 
 ### 第三步：配置 RPC 服务端
 
@@ -104,10 +104,10 @@ public class HelloServiceImpl implements HelloService {
 </beans>
 ```
 
-- Service Registry：用于服务注册，若使用 ZooKeeper 实现，则需提供 ZooKeeper 地址、系统名、实例号。
-- RPC Server：用于发布 RPC 服务，需要提供服务器端口。
+- Service Registry：用于服务注册，若使用 ZooKeeper 实现，则需提供 ZooKeeper 地址、系统名、实例号
+- RPC Server：用于发布 RPC 服务，需要提供服务器端口
 
-注册到 ZooKeeper 中的 ZNode 路径为：`registry/system/instance/service/address`，前 4 个节点是持久的，最后 1 个节点是临时的。
+注册到 ZooKeeper 中的 ZNode 路径为：`registry/system/instance/service/address`，前 4 个节点是持久的，最后 1 个节点是临时的
 
 #### rpc.properties
 
@@ -118,10 +118,10 @@ rpc.system_name=sample
 rpc.instance_id=100
 ```
 
-- rpc.service_address：发布 RPC 服务的地址。
-- rpc.registry_address：ZooKeeper 服务器的地址。
-- rpc.system_name：系统名。
-- rpc.instance_id：实例号。
+- rpc.service_address：发布 RPC 服务的地址
+- rpc.registry_address：ZooKeeper 服务器的地址
+- rpc.system_name：系统名
+- rpc.instance_id：实例号
 
 ### 第四步：启动 RPC 服务
 
@@ -138,7 +138,7 @@ public class RpcBootstrap {
 }
 ```
 
-运行 RpcBootstrap 类，将对外发布 RPC 服务，同时进行服务注册。
+运行 RpcBootstrap 类，将对外发布 RPC 服务，同时进行服务注册
 
 ## 调用 RPC 服务
 
@@ -162,8 +162,8 @@ public class RpcBootstrap {
 </dependency>
 ```
 
-- RPC Sample API：RPC 接口所在模块的依赖。
-- RPC Client：RPC 客户端框架的依赖。
+- RPC Sample API：RPC 接口所在模块的依赖
+- RPC Client：RPC 客户端框架的依赖
 
 ### 第二步：配置 RPC 客户端
 
@@ -196,8 +196,8 @@ public class RpcBootstrap {
 </beans>
 ```
 
-- Service Discovery：用于服务发现，若使用 ZooKeeper 实现，则需提供 ZooKeeper 地址。
-- RPC Proxy：用于获取 RPC 代理接口。
+- Service Discovery：用于服务发现，若使用 ZooKeeper 实现，则需提供 ZooKeeper 地址
+- RPC Proxy：用于获取 RPC 代理接口
 
 #### rpc.properties
 
@@ -207,9 +207,9 @@ rpc.system_name=sample
 rpc.instance_id=100
 ```
 
-- rpc.registry_address：ZooKeeper 服务器的地址（IP 地址与端口）。
-- rpc.system_name：系统名。
-- rpc.instance_id：实例号。
+- rpc.registry_address：ZooKeeper 服务器的地址（IP 地址与端口）
+- rpc.system_name：系统名
+- rpc.instance_id：实例号
 
 ### 第三步：调用 RPC 服务
 
@@ -223,6 +223,6 @@ HelloService helloService = rpcProxy.create(HelloService.class); // 2
 String result = helloService.hello("World"); // 3
 ```
 
-1. 注入 RpcProxy 对象。
-2. 调用 RpcProxy 对象的 create 方法来创建 RPC 代理接口。
-3. 调用 RPC 代理接口的方法，就像调用远程接口方法一样。
+1. 注入 RpcProxy 对象
+2. 调用 RpcProxy 对象的 create 方法来创建 RPC 代理接口
+3. 调用 RPC 代理接口的方法，就像调用远程接口方法一样

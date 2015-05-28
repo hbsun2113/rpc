@@ -46,5 +46,7 @@ public class HelloClient4 {
         } finally {
             executor.shutdown();
         }
+
+        System.exit(0);
     }
 }

@@ -25,5 +25,7 @@ public class HelloClient3 {
         System.out.println("loop: " + loopCount);
         System.out.println("time: " + time + "ms");
         System.out.println("tps: " + (double) loopCount / ((double) time / 1000));
+
+        System.exit(0);
     }
 }
