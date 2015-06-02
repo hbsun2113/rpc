@@ -1,8 +1,8 @@
 # 分布式 RPC 框架 - 使用说明
 
-当前版本：1.3.0
+当前版本：1.2.1
 
-发布日期：2015-05-28
+发布日期：2015-06-02
 
 发布日志参见 `RELEASE.md` 文档
 
@@ -91,8 +91,6 @@ public class HelloServiceImpl implements HelloService {
     <!-- Service Registry -->
     <bean id="serviceRegistry" class="com.adchina.rpc.registry.zookeeper.ZooKeeperServiceRegistry">
         <constructor-arg name="zkAddress" value="${rpc.registry_address}"/>
-        <constructor-arg name="systemName" value="${rpc.system_name}"/>
-        <constructor-arg name="instanceId" value="${rpc.instance_id}"/>
     </bean>
 
     <!-- RPC Server -->
@@ -107,21 +105,17 @@ public class HelloServiceImpl implements HelloService {
 - Service Registry：用于服务注册，若使用 ZooKeeper 实现，则需提供 ZooKeeper 地址、系统名、实例号
 - RPC Server：用于发布 RPC 服务，需要提供服务器端口
 
-注册到 ZooKeeper 中的 ZNode 路径为：`registry/system/instance/service/address`，前 4 个节点是持久的，最后 1 个节点是临时的
+注册到 ZooKeeper 中的 ZNode 路径为：`registry/service/address`，前 2 个节点是持久的，最后 1 个节点是临时的
 
 #### rpc.properties
 
 ```properties
 rpc.service_address=127.0.0.1:8000
 rpc.registry_address=127.0.0.1:2181
-rpc.system_name=sample
-rpc.instance_id=100
 ```
 
 - rpc.service_address：发布 RPC 服务的地址
 - rpc.registry_address：ZooKeeper 服务器的地址
-- rpc.system_name：系统名
-- rpc.instance_id：实例号
 
 ### 第四步：启动 RPC 服务
 
@@ -184,8 +178,6 @@ public class RpcBootstrap {
     <!-- Service Discovery -->
     <bean id="serviceDiscovery" class="com.adchina.rpc.registry.zookeeper.ZooKeeperServiceDiscovery">
         <constructor-arg name="zkAddress" value="${rpc.registry_address}"/>
-        <constructor-arg name="systemName" value="${rpc.system_name}"/>
-        <constructor-arg name="instanceId" value="${rpc.instance_id}"/>
     </bean>
 
     <!-- RPC Proxy -->
@@ -203,13 +195,9 @@ public class RpcBootstrap {
 
 ```properties
 rpc.registry_address=127.0.0.1:2181
-rpc.system_name=sample
-rpc.instance_id=100
 ```
 
 - rpc.registry_address：ZooKeeper 服务器的地址（IP 地址与端口）
-- rpc.system_name：系统名
-- rpc.instance_id：实例号
 
 ### 第三步：调用 RPC 服务
 

@@ -11,8 +11,6 @@
 
     <bean id="serviceDiscovery" class="com.adchina.rpc.registry.zookeeper.ZooKeeperServiceDiscovery">
         <constructor-arg name="zkAddress" value="${rpc.registry_address}"/>
-        <constructor-arg name="systemName" value="${rpc.system_name}"/>
-        <constructor-arg name="instanceId" value="${rpc.instance_id}"/>
     </bean>
 
     <bean id="rpcProxy" class="com.adchina.rpc.client.RpcProxy">

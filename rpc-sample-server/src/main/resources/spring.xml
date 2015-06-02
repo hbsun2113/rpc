@@ -13,8 +13,6 @@
 
     <bean id="serviceRegistry" class="com.adchina.rpc.registry.zookeeper.ZooKeeperServiceRegistry">
         <constructor-arg name="zkAddress" value="${rpc.registry_address}"/>
-        <constructor-arg name="systemName" value="${rpc.system_name}"/>
-        <constructor-arg name="instanceId" value="${rpc.instance_id}"/>
     </bean>
 
     <bean id="rpcServer" class="com.adchina.rpc.server.RpcServer">
