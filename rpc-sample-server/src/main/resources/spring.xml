@@ -7,15 +7,15 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.adchina.rpc.sample.server"/>
+    <context:component-scan base-package="com.xxx.rpc.sample.server"/>
 
     <context:property-placeholder location="classpath:rpc.properties"/>
 
-    <bean id="serviceRegistry" class="com.adchina.rpc.registry.zookeeper.ZooKeeperServiceRegistry">
+    <bean id="serviceRegistry" class="com.xxx.rpc.registry.zookeeper.ZooKeeperServiceRegistry">
         <constructor-arg name="zkAddress" value="${rpc.registry_address}"/>
     </bean>
 
-    <bean id="rpcServer" class="com.adchina.rpc.server.RpcServer">
+    <bean id="rpcServer" class="com.xxx.rpc.server.RpcServer">
         <constructor-arg name="serviceAddress" value="${rpc.service_address}"/>
         <constructor-arg name="serviceRegistry" ref="serviceRegistry"/>
     </bean>

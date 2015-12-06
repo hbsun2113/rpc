@@ -11,7 +11,7 @@
 > 参见 rpc-sample-api 模块
 
 ```java
-package com.adchina.rpc.sample.api;
+package com.xxx.rpc.sample.api;
 
 public interface HelloService {
 
@@ -32,14 +32,14 @@ public interface HelloService {
 ```xml
 <!-- RPC Sample API -->
 <dependency>
-    <groupId>com.adchina.rpc</groupId>
+    <groupId>com.xxx.rpc</groupId>
     <artifactId>rpc-sample-api</artifactId>
     <version>${version.rpc}</version>
 </dependency>
 
 <!-- RPC Server -->
 <dependency>
-    <groupId>com.adchina.rpc</groupId>
+    <groupId>com.xxx.rpc</groupId>
     <artifactId>rpc-server</artifactId>
     <version>${version.rpc}</version>
 </dependency>
@@ -52,10 +52,10 @@ public interface HelloService {
 ### 第二步：实现 RPC 接口
 
 ```java
-package com.adchina.rpc.sample.server;
+package com.xxx.rpc.sample.server;
 
-import com.adchina.rpc.sample.api.HelloService;
-import com.adchina.rpc.server.RpcService;
+import com.xxx.rpc.sample.api.HelloService;
+import com.xxx.rpc.server.RpcService;
 
 @RpcService(HelloService.class)
 public class HelloServiceImpl implements HelloService {
@@ -84,17 +84,17 @@ public class HelloServiceImpl implements HelloService {
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.adchina.rpc.sample.server"/>
+    <context:component-scan base-package="com.xxx.rpc.sample.server"/>
 
     <context:property-placeholder location="classpath:rpc.properties"/>
 
     <!-- Service Registry -->
-    <bean id="serviceRegistry" class="com.adchina.rpc.registry.zookeeper.ZooKeeperServiceRegistry">
+    <bean id="serviceRegistry" class="com.xxx.rpc.registry.zookeeper.ZooKeeperServiceRegistry">
         <constructor-arg name="zkAddress" value="${rpc.registry_address}"/>
     </bean>
 
     <!-- RPC Server -->
-    <bean id="rpcServer" class="com.adchina.rpc.server.RpcServer">
+    <bean id="rpcServer" class="com.xxx.rpc.server.RpcServer">
         <constructor-arg name="serviceAddress" value="${rpc.service_address}"/>
         <constructor-arg name="serviceRegistry" ref="serviceRegistry"/>
     </bean>
@@ -120,7 +120,7 @@ rpc.registry_address=127.0.0.1:2181
 ### 第四步：启动 RPC 服务
 
 ```java
-package com.adchina.rpc.sample.server;
+package com.xxx.rpc.sample.server;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -143,14 +143,14 @@ public class RpcBootstrap {
 ```xml
 <!-- RPC Sample API -->
 <dependency>
-    <groupId>com.adchina.rpc</groupId>
+    <groupId>com.xxx.rpc</groupId>
     <artifactId>rpc-sample-api</artifactId>
     <version>${version.rpc}</version>
 </dependency>
 
 <!-- RPC Client -->
 <dependency>
-    <groupId>com.adchina.rpc</groupId>
+    <groupId>com.xxx.rpc</groupId>
     <artifactId>rpc-client</artifactId>
     <version>${version.rpc}</version>
 </dependency>
@@ -176,12 +176,12 @@ public class RpcBootstrap {
     <context:property-placeholder location="classpath:rpc.properties"/>
 
     <!-- Service Discovery -->
-    <bean id="serviceDiscovery" class="com.adchina.rpc.registry.zookeeper.ZooKeeperServiceDiscovery">
+    <bean id="serviceDiscovery" class="com.xxx.rpc.registry.zookeeper.ZooKeeperServiceDiscovery">
         <constructor-arg name="zkAddress" value="${rpc.registry_address}"/>
     </bean>
 
     <!-- RPC Proxy -->
-    <bean id="rpcProxy" class="com.adchina.rpc.client.RpcProxy">
+    <bean id="rpcProxy" class="com.xxx.rpc.client.RpcProxy">
         <constructor-arg name="serviceDiscovery" ref="serviceDiscovery"/>
     </bean>
 
