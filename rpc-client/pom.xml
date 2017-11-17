@@ -12,7 +12,7 @@
         <version>1.3.0</version>
     </parent>
 
-    <artifactId>rpc-client</artifactId>
+    <artifactId>rpc-client</artifactId> <!--ArtifactID就是项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称-->
 
     <dependencies>
         <!-- RPC Common -->
@@ -24,7 +24,7 @@
         <!-- RPC Registry with ZooKeeper -->
         <dependency>
             <groupId>com.xxx.rpc</groupId>
-            <artifactId>rpc-registry-zookeeper</artifactId>
+            <artifactId>rpc-registry</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

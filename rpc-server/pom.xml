@@ -34,7 +34,7 @@
         <!-- RPC Registry with ZooKeeper -->
         <dependency>
             <groupId>com.xxx.rpc</groupId>
-            <artifactId>rpc-registry-zookeeper</artifactId>
+            <artifactId>rpc-registry</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
